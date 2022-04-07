@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/test.css') }}">
+
+    <title>JCTY-EmployeeSystem</title>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('home') }}" class="logo">JCTY</a>
+        <div class="header-right">
+            <a class="active" href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('contactus') }}">Contact</a>
+            <a href="{{ url_for('aboutus') }}">About</a>
+        </div>
+      </div>
+    <div class="form-style-10">
+        <h1>Employee Database System<span>Write down the information of employee!</span></h1>
+        <form action="/addemp" autocomplete="on" method = "POST" enctype="multipart/form-data">
+            <div class="section"><span>1</span>Image</div>
+            <div class="inner-wrap">                        <span>
+                <input id="fileupload" type=file accept="image/*" name="emp_image_file" style="height:25px;font-size:14pt;color:grey;">
+            <div id="dvPreview"></div>
+        </div>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript">
+        $(function () {
+            $("#fileupload").change(function () {
+                $("#dvPreview").html("");
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                if (regex.test($(this).val().toLowerCase())) {
+                    if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
+                        $("#dvPreview").show();
+                        $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
+                    }
+                    else {
+                        if (typeof (FileReader) != "undefined") {
+                            $("#dvPreview").show();
+                            $("#dvPreview").append("<img />");
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $("#dvPreview img").attr('style','width: 26.2vw; height: 36.2vh; padding-left: 0; padding-top:1vh; ');
+                                $("#dvPreview img").attr("src", e.target.result);
+                            }
+                            reader.readAsDataURL($(this)[0].files[0]);
+                        } else {
+                            alert("This browser does not support FileReader.");
+                        }
+                    }
+                } else {
+                    alert("Please upload a valid image file.");
+                }
+            });
+        });
+        </script>
+        
+        
+            <div class="section"><span>2</span>Full Name & Address</div>
+            <div class="inner-wrap">
+                <label>Your Full Name <input type="text" name="employee_name"></label>
+                <label>Address <textarea name="address"></textarea></label>
+            </div>
+        
+            <div class="section"><span>3</span>Email & Phone</div>
+            <div class="inner-wrap">
+                <label>Email Address <input type="email" name="email_address" /></label>
+                <label>Phone Number <input type="text" name="phone_number" /></label>
+            </div>
+        
+            <div class="section"><span>4</span>Job Specification</div>
+                <div class="inner-wrap">
+                <label>                        <select name="job_role" id="option" aria-placeholder="Select an option" class="design_option" >
+                    <option value disabled selected style="opacity: 0.5;font-weight: normal;">Select a job role</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="Human Resource">Human Resource</option>
+                  </select>
+        </label>
+                <label>Salary <input type="number" name="salary" /></label>
+            </div>
+            <div class="button-section">
+             <input type="submit" name="Sign Up" />
+             </span>
+            </div>
+        </form>
+        </div></body>
+</html>
