@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AboutUs</title>
+</head>
+<style>
+
+    .header {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+      grid-area: header;
+      overflow: hidden;
+      background-color: #d76b49;
+      padding: 20px 10px;
+      margin :-10px;
+    }
+    
+    .header a {
+      float: left;
+      color: black;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px; 
+      line-height: 25px;
+      border-radius: 4px;
+    }
+    
+    .header a.logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    
+    .header a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .header a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+    
+    .header-right {
+      float: right;
+    }
+
+    .corporation {
+    justify-content: space-around;
+    /*  border: solid 1px; */
+    margin: 0 5%;
+    }
+</style>
+<center>
+    <body bgcolor="Bisque">
+      <div class="header">
+        <a href="{{ url_for('home') }}" class="logo">JCTY</a>
+        <div class="header-right">
+          <a class="active" href="{{ url_for('home') }}">Home</a>
+          <a href="{{ url_for('contactus') }}">Contact</a>
+          <a href="{{ url_for('aboutus') }}">About</a>
+        </div>
+      </div>
+	<font color="black" size="6" style="font-family: Comic Sans MS">
+
+        <h2>About The JCTY</h2>
+        <br>
+        <h3>JCTY System</h3>
+
+        <div >
+            <dd >JCTY System is a partnership business which engaged with the company and the employees </dd>
+            <dd > Our service included Employee Insert System, Attendance System and Query Read System.</dd>
+            <dd >High-quality of the system always impress our customers.</dd>
+        </div>
+
+    
+    </body>
+</center>
+</html>
