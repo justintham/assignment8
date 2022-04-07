@@ -5,7 +5,6 @@ import boto3
 from config import *
 from botocore.client import Config
 
-
 app = Flask(__name__,template_folder='templates')
 
 bucket = custombucket
@@ -28,6 +27,14 @@ table = 'employee'                                                          #NO 
 def home():
     return render_template('home.html')
 
+@app.route("/about", methods=['GET', 'POST'])
+def aboutus():
+     return render_template('AboutUs.html')
+
+@app.route("/contact", methods=['GET', 'POST'])
+def contactus():
+     return render_template('ContactUs.html')
+
 
 @app.route("/empDatabase", methods=['GET', 'POST'])
 def employeeDatabase():
@@ -37,6 +44,10 @@ def employeeDatabase():
 def attendanceDatabase():
     return render_template('AttendanceSystem.html')
 
+@app.route("/empDatabase2", methods=['GET', 'POST'])
+def queryDatabase():
+    return render_template('query.html')
+
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -44,9 +55,12 @@ def AddEmp():
     employee_name = request.form['employee_name']
     job_role = request.form['job_role']
     salary = request.form['salary']
+    address = request.form['address']
+    email_address = request.form['email_address']
+    phone_number = request.form['phone_number']
     emp_image_file = request.files['emp_image_file']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s)"
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if emp_image_file.filename == "":
@@ -54,7 +68,7 @@ def AddEmp():
 
     try:
 
-        cursor.execute(insert_sql, (emp_id, employee_name, job_role, salary))
+        cursor.execute(insert_sql, (emp_id, employee_name, job_role, salary, address, email_address, phone_number))
         db_conn.commit()
         # Uplaod image file in S3 #
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + ".png"
@@ -94,7 +108,9 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, scientist_count = scientist_count, engineering_count = engineering_count, hr_count = hr_count, image_url = image_url)
+    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, scientist_count = scientist_count, engineering_count = engineering_count, hr_count = hr_count, image_url = image_url, address = address, email_address = email_address, phone_number = phone_number)
+
+
 
 
 @app.route("/addemp1", methods=['POST'])
@@ -119,6 +135,37 @@ def AddEmp1():
 
     print("all modification done...")
     return render_template('OutputAttendanceSystem.html', name=emp_name, id = emp_num, date_1 = date_now, time_1 =timenow )
+
+@app.route("/queryemp", methods=['POST'])
+def QueryEmp():
+    try:
+        emp_id2 = request.form['emp_id']
+        emp_name2 =''
+        job_role2 =''
+        salary2 =''
+    
+        if emp_id2  == "":
+            return "Please type number"
+
+        query_employee = "SELECT employee_name,job_role,salary FROM employee WHERE emp_id = %s"
+        cursor = db_conn.cursor()
+        cursor.execute(query_employee,(emp_id2))
+        db_conn.commit()
+        # get all records
+        records = cursor.fetchall()
+
+        for row in records:
+ 
+            emp_name2=row[0]
+            job_role2=row[1]
+            salary2=row[2]
+        cursor.close()
+
+    except Exception as e:
+        return str(e)
+
+    print("all modification done...")
+    return render_template('queryOutput.html', id=emp_id2, name = emp_name2, job_role = job_role2,salary =salary2)    
 
 
 
