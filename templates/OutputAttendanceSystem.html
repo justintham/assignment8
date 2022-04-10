@@ -46,11 +46,11 @@
 
 <center>
 	<div class="header">
-		<a href="#default" class="logo">JCTY</a>
+		<a href="{{ url_for('home') }}" class="logo">JCTY</a>
 		<div class="header-right">
 		  <a class="active" href="{{ url_for('home') }}">Home</a>
-		  <a href="#contact">Contact</a>
-		  <a href="/about">About</a>
+		  <a href="{{ url_for('contactus') }}">Contact</a>
+		  <a href="{{ url_for('aboutus') }}">About</a>
 		</div>
 	  </div>
 	<font color="RebeccaPurple" size="5" style="font-family: avenir">

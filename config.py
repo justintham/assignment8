@@ -6,4 +6,3 @@ custombucket = "justinthamjiawei-employee"
 customregion = "us-east-1"
 cloudfront = "dhtgw335jsua5.cloudfront.net"
 
-

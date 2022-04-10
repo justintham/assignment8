@@ -112,7 +112,6 @@ def AddEmp():
 
 
 
-
 @app.route("/addemp1", methods=['POST'])
 def AddEmp1():
     emp_id = request.form['emp_id']
@@ -139,15 +138,18 @@ def AddEmp1():
 @app.route("/queryemp", methods=['POST'])
 def QueryEmp():
     try:
-        emp_id2 = request.form['emp_id']
         emp_name2 =''
+        address2=''
+        email_address2='' 
+        phone_number2=''
+        emp_id2 = request.form['emp_id']
         job_role2 =''
         salary2 =''
     
         if emp_id2  == "":
             return "Please type number"
 
-        query_employee = "SELECT employee_name,job_role,salary FROM employee WHERE emp_id = %s"
+        query_employee = "SELECT employee_name, address, email_address, phone_number, emp_id, job_role, salary FROM employee WHERE emp_id = %s"
         cursor = db_conn.cursor()
         cursor.execute(query_employee,(emp_id2))
         db_conn.commit()
@@ -155,17 +157,20 @@ def QueryEmp():
         records = cursor.fetchall()
 
         for row in records:
- 
             emp_name2=row[0]
-            job_role2=row[1]
-            salary2=row[2]
+            address2=row[1]
+            email_address2=row[2]
+            phone_number2=row[3]
+            emp_id2=row[4]
+            job_role2=row[5]
+            salary2=row[6]
         cursor.close()
 
     except Exception as e:
         return str(e)
 
     print("all modification done...")
-    return render_template('queryOutput.html', id=emp_id2, name = emp_name2, job_role = job_role2,salary =salary2)    
+    return render_template('queryOutput.html',name = emp_name2, address = address2,email_address = email_address2,phone_number =phone_number2, emp_id=emp_id2, job_role = job_role2,salary =salary2)    
 
 
 

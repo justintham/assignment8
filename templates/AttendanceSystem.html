@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	
-	<title>Employee Attendance</title>
-	<style>
-		.header {
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance</title>
+</head>
+<style type="text/css">
+    .form-style-10{
+        width:450px;
+        padding:30px;
+        margin:40px auto;
+        background: #FFF;
+        border-radius: 10px;
+        -webkit-border-radius:10px;
+        -moz-border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+        -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+        -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    }
+    .form-style-10 .inner-wrap{
+        padding: 30px;
+        background: #F8F8F8;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    }
+    .form-style-10 h1{
+        background: #2A88AD;
+        padding: 20px 30px 15px 30px;
+        margin: -30px -30px 30px -30px;
+        border-radius: 10px 10px 0 0;
+        -webkit-border-radius: 10px 10px 0 0;
+        -moz-border-radius: 10px 10px 0 0;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+        font: normal 30px 'Bitter', serif;
+        -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+        border: 1px solid #257C9E;
+    }
+    .form-style-10 h1 > span{
+        display: block;
+        margin-top: 2px;
+        font: 13px Arial, Helvetica, sans-serif;
+    }
+    .form-style-10 label{
+        display: block;
+        font: 13px Arial, Helvetica, sans-serif;
+        color: #888;
+        margin-bottom: 15px;
+    }
+    .form-style-10 input[type="text"],
+    .form-style-10 input[type="date"],
+    .form-style-10 input[type="datetime"],
+    .form-style-10 input[type="email"],
+    .form-style-10 input[type="number"],
+    .form-style-10 input[type="search"],
+    .form-style-10 input[type="time"],
+    .form-style-10 input[type="url"],
+    .form-style-10 input[type="password"],
+    .form-style-10 textarea,
+    .form-style-10 select {
+        display: block;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+        -webkit-border-radius:6px;
+        -moz-border-radius:6px;
+        border: 2px solid #fff;
+        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+        -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+        -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+    }
+    
+    .form-style-10 .section{
+        font: normal 20px 'Bitter', serif;
+        color: #2A88AD;
+        margin-bottom: 5px;
+    }
+    .form-style-10 .section span {
+        background: #2A88AD;
+        padding: 5px 10px 5px 10px;
+        position: absolute;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border: 4px solid #fff;
+        font-size: 14px;
+        margin-left: -45px;
+        color: #fff;
+        margin-top: -3px;
+    }
+    .form-style-10 input[type="button"], 
+    .form-style-10 input[type="submit"]{
+        background: #2A88AD;
+        padding: 8px 20px 8px 20px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+        font: normal 30px 'Bitter', serif;
+        -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+        border: 1px solid #257C9E;
+        font-size: 15px;
+    }
+    .form-style-10 input[type="button"]:hover, 
+    .form-style-10 input[type="submit"]:hover{
+        background: #2A6881;
+        -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+        box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+    }
+    .form-style-10 .privacy-policy{
+        float: right;
+        width: 250px;
+        font: 12px Arial, Helvetica, sans-serif;
+        color: #4D4D4D;
+        margin-top: 10px;
+        text-align: right;
+    }
+
+    .header {
 		  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 		  grid-area: header;
 		  overflow: hidden;
@@ -42,59 +165,48 @@
 		.header-right {
 		  float: right;
 		}
-		</style>
-</head>
-<center>
-	<div class="header">
-		<a href="#default" class="logo">JCTY</a>
+    </style>
+<body bgcolor="lightgrey">
+    <div class="header">
+		<a href="{{ url_for('home') }}" class="logo">JCTY</a>
 		<div class="header-right">
 		  <a class="active" href="{{ url_for('home') }}">Home</a>
-		  <a href="#contact">Contact</a>
-		  <a href="/about">About</a>
+		  <a href="{{ url_for('contactus') }}">Contact</a>
+		  <a href="{{ url_for('aboutus') }}">About</a>
 		</div>
 	  </div>
-	<font color="black" size="6" style="font-family: Comic Sans MS">
 
-		<h1 style="color: DarkMagenta; font-size: 80px;">Attendance System</h1>
+    <div class="form-style-10">
+        <form action="/addemp1" autocomplete="on" method = "POST" enctype="multipart/form-data">
 
-		<body bgcolor="lightgrey">
-			
+        <h1>Attendance System</h1>
+        
 
-			<form action="/addemp1" autocomplete="on" method = "POST" enctype="multipart/form-data">
+        
+            <div class="section">Attendance</div>
+            <div class="inner-wrap">
+                <label>Employee Id <input type="number" name="emp_id" /></label>
+                <label>Employee Name <input type="text" name="first_name" /></label>
+                <label>Date <input type="text" id="currentDate" name="currentDate1" /></label>
+                    <script>
+                    var today = new Date();
+                    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    document.getElementById("currentDate").value = date;
+                    </script>
 
-				
-
-		  		Employee ID:<input style="height:25px;font-size:20pt;font-family: Century Gothic; width: 400px;height : 30px;color:grey;" type="number" name="emp_id" autofocus size="40"><br><br><br>
-
-		  		Employee Name:<input style="height:25px;font-size:20pt;font-family: Century Gothic; width: 400px;height : 30px;color:grey;" type="text" name="first_name" ><br><br><br>
-
-
-				  Current Date:
-				  <input style="font-size: 25px; width: 400px;height : 30px;";type="text" id="currentDate", name="currentDate1", >
-				  <br><br>
-				  <script>
-				  var today = new Date();
-				  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-				  document.getElementById("currentDate").value = date;
-				  </script><br>
-
-					Current Time:
-					<input style="font-size: 25px; width: 400px;height : 30px;";type="text" id="currentTime" , name="currentTime1">
-					<br><br>
-					<script>
+                <label>Time <input type="text" id="currentTime" name="currentTime1" /></label>
+                    <script>
 					var today = new Date();
 					var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 					document.getElementById("currentTime").value = time;
-					</script><br>
+					</script>
+                
+            </div>
 
-
-
-		  		<button type="submit" style="background: Salmon; height: 70px; width: 450px; color: white; size: 5; font:oblique;">UPDATE DATABASE</button>
-
-			</form>
-
-		</body>
-
-	</font>
-</center>
+            <div class="button-section">
+             <input type="submit" value="Update Attendance"  />
+            </div>
+        </form>
+        </div>
+</body>
 </html>
